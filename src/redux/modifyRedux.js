@@ -60,6 +60,7 @@ export const addTableRequest = tableData => {
   }
 }
 
+
 const reducer = (statePart = [], action) => {
   
   switch (action.type) {

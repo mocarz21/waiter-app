@@ -4,6 +4,7 @@ const Header =() =>{
 
     return(
         <NavBar/>
+        
     )
 }
 

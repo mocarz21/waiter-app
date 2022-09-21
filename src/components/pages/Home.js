@@ -13,6 +13,7 @@ const Home = () =>{
                     Add Table
                 </Button>
             </div>
+            
         </>
     )
 
