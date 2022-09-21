@@ -1,4 +1,4 @@
-
+import { API_URL } from '../config'
 
 //selectors
 export const getTableData = ({table},id) =>table.find(tab=>tab.id === id)
@@ -15,7 +15,7 @@ export const editTable = payload=>({type: EDIT_TABLE, payload})
 export const addTable = payload=>({type: ADD_TABLE, payload})
 export const fetchTables = () =>{
   return(dispatch) =>{
-  fetch('http://localhost:3131/api/tables')
+  fetch(API_URL)
     .then(res=>res.json())
     .then(tables => dispatch(updateTables(tables)))
   }
@@ -36,7 +36,7 @@ export const editTableRequest = (editTableData) =>{
       })
     };
     console.log('aa',options)
-    fetch('http://localhost:3131/api/tables/'+editTableData.id, options )  
+    fetch(API_URL + editTableData.id, options )  
       .then(() => dispatch(editTable(editTableData)))
   }
 }
@@ -55,7 +55,7 @@ export const addTableRequest = tableData => {
         price: tableData.price
       })
     };
-    fetch('http://localhost:3131/api/tables' , options )  
+    fetch(API_URL , options )  
       .then(() => dispatch(addTable(tableData)))
   }
 }
