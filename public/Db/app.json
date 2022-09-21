@@ -1,0 +1,32 @@
+{
+  "tables": [
+    {
+      "id": "1",
+      "status": "Cleaning",
+      "people": "23",
+      "maxPeople": "30",
+      "price": "20"
+    },
+    {
+      "id": "2",
+      "status": "Busy",
+      "people": "3",
+      "maxPeople": "6",
+      "price": "26"
+    },
+    {
+      "id": "3",
+      "status": "Busy",
+      "people": "31",
+      "maxPeople": "3",
+      "price": "20"
+    },
+    {
+      "id": "4",
+      "status": "Cleaning",
+      "price": "20",
+      "people": "2",
+      "maxPeople": "2"
+    }
+  ]
+}
