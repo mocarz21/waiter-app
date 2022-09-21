@@ -27,6 +27,34 @@
       "price": "20",
       "people": "2",
       "maxPeople": "2"
+    },
+    {
+      "status": "Free",
+      "people": "sad",
+      "maxPeople": "sd",
+      "price": "sada",
+      "id": "QCw1A_5"
+    },
+    {
+      "status": "Free",
+      "people": "2",
+      "maxPeople": "5",
+      "price": "40",
+      "id": "KDcICiH"
+    },
+    {
+      "status": "Busy",
+      "people": "2",
+      "maxPeople": "3",
+      "price": "60",
+      "id": "AhU-8aq"
+    },
+    {
+      "status": "Cleaning",
+      "people": "s",
+      "maxPeople": "sa",
+      "price": "ds",
+      "id": "SIZsmkN"
     }
   ]
 }

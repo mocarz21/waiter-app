@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Header from './components/views/Header'
 import Footer from './components/views/Footer'
+import Add from './components/pages/Add'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path ="/" element={<Home/>} />
           <Route path ="/edit/:id" element={<Edit/>} />
+          <Route path = "/add" element = {<Add/>} />
         </Routes>
       <Footer/>
     </>

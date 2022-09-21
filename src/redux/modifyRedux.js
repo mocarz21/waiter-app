@@ -7,10 +7,12 @@ export const getTableData = ({table},id) =>table.find(tab=>tab.id === id)
 const createActionName = actionName => `app/posts/${actionName}`;
 const UPDATE_TABLES = createActionName('UPDATE_TABLES')
 const EDIT_TABLE = createActionName('EDIT_TABLE')
+const ADD_TABLE = createActionName('ADD_TABLE')
 
 // action creators
 export const updateTables = payload=>({type: UPDATE_TABLES, payload})
-export const editTable =payload=>({type: EDIT_TABLE, payload})
+export const editTable = payload=>({type: EDIT_TABLE, payload})
+export const addTable = payload=>({type: ADD_TABLE, payload})
 export const fetchTables = () =>{
   return(dispatch) =>{
   fetch('http://localhost:3131/api/tables')
@@ -38,12 +40,31 @@ export const editTableRequest = (editTableData) =>{
       .then(() => dispatch(editTable(editTableData)))
   }
 }
+export const addTableRequest = tableData => {
+  return(dispatch) =>{
+    const options ={
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: tableData.id,
+        status: tableData.status,
+        people: tableData.people,
+        maxPeople: tableData.maxPeople,
+        price: tableData.price
+      })
+    };
+    fetch('http://localhost:3131/api/tables' , options )  
+      .then(() => dispatch(addTable(tableData)))
+  }
+}
 
 const reducer = (statePart = [], action) => {
   
   switch (action.type) {
     case UPDATE_TABLES:
-      console.log(statePart,action.payload)
+      
       return [...action.payload]
     case EDIT_TABLE:
       return statePart.map(table=>{
@@ -53,6 +74,9 @@ const reducer = (statePart = [], action) => {
           return table
         } 
       })
+    case ADD_TABLE:
+      console.log('asda',statePart,action.payload)
+      return [...statePart, action.payload]
       default:
         return statePart;
   };
