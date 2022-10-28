@@ -8,9 +8,11 @@ const createActionName = actionName => `app/posts/${actionName}`;
 const UPDATE_TABLES = createActionName('UPDATE_TABLES')
 const EDIT_TABLE = createActionName('EDIT_TABLE')
 const ADD_TABLE = createActionName('ADD_TABLE')
+const DELETE = createActionName('DELETE')
 
 // action creators
 export const updateTables = payload=>({type: UPDATE_TABLES, payload})
+export const deleteTable = payload => ({type: DELETE, payload})
 export const editTable = payload=>({type: EDIT_TABLE, payload})
 export const addTable = payload=>({type: ADD_TABLE, payload})
 export const fetchTables = () =>{
@@ -35,7 +37,6 @@ export const editTableRequest = (editTableData) =>{
         price: editTableData.price
       })
     };
-    console.log('aa',options)
     fetch(API_URL + editTableData.id, options )  
       .then(() => dispatch(editTable(editTableData)))
   }
@@ -59,6 +60,18 @@ export const addTableRequest = tableData => {
       .then(() => dispatch(addTable(tableData)))
   }
 }
+export const deleteTableRequest = tableData =>{
+  return(dispatch) =>{
+    const options ={
+      method: 'DELETE',
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch(API_URL + "/" + tableData.id, options)
+      .then(()=>dispatch(deleteTable(tableData)))
+  }
+}
 
 
 const reducer = (statePart = [], action) => {
@@ -76,8 +89,10 @@ const reducer = (statePart = [], action) => {
         } 
       })
     case ADD_TABLE:
-      console.log('asda',statePart,action.payload)
       return [...statePart, action.payload]
+    case DELETE:
+      console.log(statePart,action)
+      return statePart.filter(table=> table.id !== action.id)
       default:
         return statePart;
   };

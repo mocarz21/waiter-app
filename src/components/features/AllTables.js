@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom'
 const AllTables = () => {
 
     const tables =useSelector(store=> {
-        console.log(store)
         return store.table
     })
     return(

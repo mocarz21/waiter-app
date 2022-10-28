@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
 import { getTableData } from '../../redux/modifyRedux'
-import { editTableRequest } from '../../redux/modifyRedux'
+import { editTableRequest, deleteTableRequest } from '../../redux/modifyRedux'
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,8 +19,6 @@ const Edit =() =>{
     
     const findTable =useSelector(store=>{
         return getTableData(store,id)}) || {};
-    
-    
 
     const [table, setTable] = useState(findTable.id)
     const [people, setPeople] = useState(findTable.people)
@@ -28,22 +26,21 @@ const Edit =() =>{
     const [price, setPrice] = useState(findTable.price)
     const [maxPeople, setMaxPeople] = useState(findTable.maxPeople)
 
-    
-
     const dispatch = useDispatch()
 
     const runSubmit =(event) => { 
         event.preventDefault()
         dispatch(editTableRequest({table, people, status, price, maxPeople,id}))
-        //navigate('/');
+        navigate('/');
 
     }
+    const runDeleteTable= () => {
 
+        dispatch(deleteTableRequest({id}))
+        navigate('/');
 
-
-
+    }
     
-    console.log('ft',status)
     return(
         <Container>
             
@@ -115,9 +112,12 @@ const Edit =() =>{
                     </Col>
                 </Form.Group>
                 </fieldset>
-                <Form.Group as={Row} className="mb-3">
-                <Col sm={{ span: 10, offset: 2 }}>
+                <Form.Group as={Row} className="mb-2">
+                <Col sm={{ span: 10, offset: 3 }}>
                     <Button  type="submit">Update</Button>
+                </Col>
+                <Col style={{margin: "5px"}} sm={{ span: 10, offset: 3 }}>
+                    <Button  type="button" onClick={runDeleteTable}>DELETE</Button>
                 </Col>
                 </Form.Group>
             </Form>
